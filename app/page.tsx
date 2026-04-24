@@ -1,65 +1,236 @@
-import Image from "next/image";
+"use client";
+
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Starfield from "./components/Starfield";
+import HeroSection from "./components/FrontPage";
+import Projects from "./components/Projects";
+import Skills from "./components/Skills";
+import CodingProfiles from "./components/CodingProfiles";
+import SecretMessage from "./components/SecretMessage";
+import MusicToggle from "./components/MusicToggle";
+import Footer from "./components/Footer";
+// import ToolsUsed from "./components/ToolsUsed";
 
 export default function Home() {
+  const [entered, setEntered] = useState(false);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            I am a Amazonian....
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <>
+      <Starfield />
+      <MusicToggle />
+
+      <AnimatePresence mode="wait">
+        {!entered ? (
+          <motion.div
+            key="hero"
+            exit={{ opacity: 0, y: -50 }}
+            transition={{ duration: 0.8 }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            <HeroSection onEnter={() => setEntered(true)} />
+          </motion.div>
+        ) : (
+          <motion.div
+            key="content"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.3 }}
           >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+            <div className="relative z-10 pt-20">
+
+              {/* ── Intro / About Sneha Section ── */}
+              <motion.section
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8, duration: 1 }}
+                className="px-6 mb-20 max-w-3xl mx-auto"
+              >
+                {/* Tags */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1, duration: 0.8 }}
+                  className="flex flex-wrap gap-2 justify-center mb-8"
+                >
+                  {[
+                    "Always Cooking Something",
+                    "Problem Solver",
+                    "Full-Stack Developer",
+                    "Got Ideas, Let's Build",
+                  ].map((tag, i) => (
+                    <span
+                      key={tag}
+                      className="text-xs tracking-widest uppercase px-3 py-1 rounded-sm border"
+                      style={{
+                        animationDelay: `${i * 0.1}s`,
+                        borderColor: "rgba(212, 165, 116, 0.3)",
+                        color: "rgba(212, 165, 116, 0.75)",
+                        background: "rgba(212, 165, 116, 0.07)",
+                        fontFamily: "monospace",
+                      }}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </motion.div>
+
+                {/* Name */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.1, duration: 0.9 }}
+                  className="text-center mb-6"
+                >
+                  <p
+                    className="text-xs tracking-widest uppercase mb-2"
+                    style={{ color: "rgba(232, 160, 180, 0.5)", fontFamily: "monospace" }}
+                  >
+                    Hello, universe - she is
+                  </p>
+                  <h3
+                    className="text-6xl md:text-7xl font-bold leading-none tracking-tight"
+                    style={{
+                      background: "linear-gradient(135deg, #d4a574 0%, #e8a0b4 50%, #d4a574 100%)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                    }}
+                  >
+                    Sneha
+                    <span
+                      className="inline-block w-2.5 h-2.5 rounded-full ml-1 align-top mt-3"
+                      style={{
+                        background: "#e8a0b4",
+                        boxShadow: "0 0 8px #e8a0b4, 0 0 20px rgba(232,160,180,0.4)",
+                        animation: "pulse 2s ease-in-out infinite",
+                      }}
+                    />
+                  </h3>
+                </motion.div>
+
+                {/* Tagline */}
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1.3, duration: 0.9 }}
+                  className="text-center text-lg md:text-xl mb-2 leading-relaxed"
+                  style={{ color: "rgba(255,255,255,0.65)" }}
+                >
+                  She builds{" "}
+                  <span style={{ color: "#d4a574", fontWeight: 600 }}>
+                    scalable things that actually work
+                  </span>{" "}
+                  and occasionally things that probably shouldn't exist yet.
+                </motion.p>
+
+                {/* Divider */}
+                <motion.div
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ delay: 1.5, duration: 0.7 }}
+                  className="my-8 flex justify-center"
+                >
+                  <div
+                    className="h-px w-16"
+                    style={{
+                      background: "linear-gradient(90deg, transparent, #d4a574, #e8a0b4, transparent)",
+                    }}
+                  />
+                </motion.div>
+
+                {/* Bio */}
+                <motion.p
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.6, duration: 0.9 }}
+                  className="text-center leading-loose"
+                  style={{ color: "rgba(255,255,255,0.45)", fontSize: "15px" }}
+                >
+                 Started with curiosity, stayed for the craft. I pick up hard
+                  problems the way some people collect hobbies, obsessively.
+                  DSA-strong, project-driven, and genuinely excited by ideas
+                  that sound impossible until suddenly they're not. If you need
+                  someone who can keep up with your wildest{" "}
+                  <span style={{ color: "rgba(232,160,180,0.7)", fontStyle: "italic" }}>
+                    "what if?"
+                  </span>{" "}
+                  I'm in.
+                </motion.p>
+
+                {/* Stats */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.8, duration: 0.9 }}
+                  className="flex justify-center gap-12 mt-10"
+                >
+                  {[
+                    { num: "∞", label: "ideas / day" },
+                    { num: "NIT", label: "Hamirpur" },
+                    { num: "∞", label: "always curious" },
+                  ].map(({ num, label }) => (
+                    <div key={label} className="flex flex-col items-center gap-1">
+                      <span
+                        className="text-3xl font-bold leading-none"
+                        style={{ color: "#d4a574" }}
+                      >
+                        {num}
+                      </span>
+                      <span
+                        className="text-xs tracking-widest uppercase"
+                        style={{
+                          color: "rgba(212,165,116,0.45)",
+                          fontFamily: "monospace",
+                        }}
+                      >
+                        {label}
+                      </span>
+                    </div>
+                  ))}
+                </motion.div>
+              </motion.section>
+
+              {/* ── Divider ── */}
+              <div className="my-16 flex justify-center">
+                <div className="w-24 h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent" />
+              </div>
+
+              < Projects />
+
+              <div className="my-16 flex justify-center">
+                <div className="w-24 h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent" />
+              </div>
+
+              < Skills />
+
+              <div className="my-16 flex justify-center">
+                <div className="w-24 h-px bg-gradient-to-r from-transparent via-blush/40 to-transparent" />
+              </div>
+
+              < CodingProfiles />
+
+              <div className="my-16 flex justify-center">
+                <div className="w-24 h-px bg-gradient-to-r from-transparent via-blush/40 to-transparent" />
+              </div>
+
+              {/* <ToolsUsed/>
+
+              <div className="my-16 flex justify-center">
+                <div className="w-24 h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent" />
+              </div> */}
+
+              <SecretMessage />
+              <Footer />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <style jsx global>{`
+        @keyframes pulse {
+          0%, 100% { transform: scale(1); opacity: 1; }
+          50% { transform: scale(1.5); opacity: 0.6; }
+        }
+      `}</style>
+    </>
   );
 }
