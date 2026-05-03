@@ -6,25 +6,25 @@ import styles from "./Skills.module.css";
 
 const categories = [
   {
-    // icon: "⌨️",
+    icon: "",
     title: "Languages",
     color: "default" as const,
     tags: ["C", "C++", "Python", "Java", "JavaScript", "SQL"],
   },
   {
-    // icon: "",
+    icon: "",
     title: "Frontend",
     color: "blue" as const,
     tags: ["ReactJS", "Redux", "HTML", "CSS", "Tailwind CSS", "Shadcn"],
   },
   {
-    // icon: "⚙️",
+    icon: "",
     title: "Backend",
     color: "green" as const,
     tags: ["NodeJS", "ExpressJS", "MongoDB", "AWS", "Cloudinary"],
   },
   // {
-  //   icon: "🤖",
+    // icon: "",
   //   title: "Machine Learning",
   //   color: "purple" as const,
   //   tags: ["NumPy", "Pandas", "Scikit-learn", "PyTorch", "Matplotlib", "CNN"],
